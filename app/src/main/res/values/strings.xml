@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Road Inspector</string>
+    <string name="login">Log in to your account</string>
+    <string name="password">Enter your password</string>
+    <string name="user">Enter your login</string>
+    <string name="button">Login</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="indefinitely">indefinitely</string>
+    <string name="meters_per_second">m/s</string>
+    <string name="millimeters">mm</string>
+    <string name="centimeters">cm</string>
+    <string name="data">Data: </string>
+    <string name="status">Status: </string>
+    <string name="current_status">Current status: </string>
+    <string name="will_it_rain">Will it rain: </string>
+    <string name="will_it_snow">Will it snow: </string>
+    <string name="wind_speed">Wind speed: </string>
+    <string name="precipitation">Total precipitation: </string>
+    <string name="snowfall_in_cm">Snowfall in cm: </string>
+</resources>

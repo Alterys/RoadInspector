@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="login">Войдите в свой аккаунт</string>
+    <string name="password">Введите свой пароль</string>
+    <string name="user">Введите ваш логин</string>
+    <string name="app_name">Состояние Дорог</string>
+    <string name="button">Войти</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="indefinitely">Неопределенно</string>
+    <string name="meters_per_second">м/с</string>
+    <string name="millimeters">мм</string>
+    <string name="centimeters">см</string>
+    <string name="data">Дата:</string>
+    <string name="status">Состояние:</string>
+    <string name="current_status">Текущее состояние:</string>
+    <string name="will_it_rain">Будет ли дождь:</string>
+    <string name="will_it_snow">Будет ли снег:</string>
+    <string name="wind_speed">Скорость ветра:</string>
+    <string name="precipitation">Количество осадков:</string>
+    <string name="snowfall_in_cm">Выпавший снег в см:</string>
+</resources>
