@@ -1,3 +1,7 @@
+## Приложение для просмотром состояния погодных условий на дороге
+>  Используется язык программирования Kotlin, набор инструментов Jetpack Compose, библиотека Retrofit, библиотека MapKit система для автоматической сборки приложений Gradle
+
+
 <details><summary>Скриншоты</summary>
 
 ![Screenshot](https://media.discordapp.net/attachments/694139582228332604/1244372317660778517/screen1.jpg?ex=6654df87&is=66538e07&hm=f319234fac005a832e06142df0e15205cd49144ccf1c0a80cb5dd28a4c8712a2&=&format=webp&width=214&height=463)
