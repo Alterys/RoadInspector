@@ -18,7 +18,6 @@ class GetWeatherUseCase(
 
         } catch (e: Exception) {
             emit(Resource.Error(e.localizedMessage ?: "Unknown error"))
-            e.printStackTrace()
         }
     }
 }

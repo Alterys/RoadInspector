@@ -1,14 +1,13 @@
 package com.example.roadinspector.presentation.screens.map
 
 import android.app.Application
-import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.universitywork.R
 import com.example.roadinspector.common.Resource
 import com.example.roadinspector.data.remote.response.weather.Weather
 import com.example.roadinspector.domain.usecase.GetWeatherUseCase
-import com.example.roadinspector.presentation.screens.map.model.toWeatherItem
+import com.example.roadinspector.domain.model.toWeatherItem
 import com.yandex.mapkit.geometry.Point
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -119,7 +118,6 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
                             )
                     }
                 }
-
                 is Resource.Error -> {
                     _screenState.update {
                         it.copy(
@@ -127,7 +125,6 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
                         )
                     }
                 }
-
                 is Resource.Loading -> {
                     _screenState.update {
                         it.copy(
@@ -140,10 +137,13 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun onDialog(index: Int) {
+        val sectorPoints = _screenState.value.sectors[index] ?: return
+        val sectorCenter = calculateMiddlePoint(sectorPoints)
         _screenState.update {
             it.copy(
                 onDialog = true,
-                indexDialog = index
+                indexDialog = index,
+                coordinatesCenterSector = sectorCenter
             )
         }
     }
@@ -152,7 +152,8 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
         _screenState.update {
             it.copy(
                 onDialog = false,
-                indexDialog = null
+                indexDialog = null,
+                coordinatesCenterSector = null
             )
         }
     }

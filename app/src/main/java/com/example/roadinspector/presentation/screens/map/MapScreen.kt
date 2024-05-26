@@ -1,6 +1,7 @@
 package com.example.roadinspector.presentation.screens.map
 
-import android.annotation.SuppressLint
+import  android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,12 +12,19 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ExitToApp
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.ModalDrawerSheet
@@ -28,9 +36,11 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -60,15 +70,14 @@ import java.math.RoundingMode
 @Composable
 fun MapScreen(
     navController: NavHostController,
+    onNavigateToSpecialRequest: (String) -> Unit,
     screenState: MapState,
     getWeather: () -> Unit,
     onDialog: (Int) -> Unit,
     closedDialog: () -> Unit,
 ) {
     val scope = rememberCoroutineScope()
-    val items = listOf("данные", "выход")
     val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val selectedItem = remember { mutableStateOf(items[0]) }
     val polyLines = remember { mutableListOf<PolylineMapObject>() }
     getWeather()
     if (screenState.weatherList?.isNotEmpty() == true) {
@@ -77,22 +86,54 @@ fun MapScreen(
             gesturesEnabled = drawerState.isOpen,
             drawerContent = {
                 ModalDrawerSheet {
-                    items.forEach { item ->
+                    Column(
+                        modifier = Modifier.padding(16.dp),
+
+                        ) {
+                        Text(
+                            modifier = Modifier,
+                            fontSize = 24.sp,
+                            textAlign = TextAlign.Center,
+                            text = "Метеомониторинг дорожного покрытия"
+                        )
+                        Text(
+                            modifier = Modifier.padding(8.dp),
+                            text = stringResource(R.string.version_app),
+                            fontSize = 16.sp,
+                            color = Color.Gray
+                        )
+                        HorizontalDivider(
+                            modifier = Modifier
+                                .height(4.dp),
+                            thickness = 1.dp,
+                            color = Color.Gray
+                        )
                         TextButton(
+                            modifier = Modifier.padding(4.dp),
                             onClick = {
                                 scope.launch {
                                     drawerState.close()
                                     drawerState.isClosed
                                 }
-                                when (item) {
-                                    "выход" -> {
-                                        navController.navigate(Screen.Login.rout)
-                                    }
-
-                                    "данные" -> {}
-                                }
+                                navController.navigate(Screen.Login.rout)
                             },
-                        ) { Text(item, fontSize = 22.sp) }
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.SpaceAround
+                            ) {
+                                Icon(
+                                    Icons.AutoMirrored.Filled.ExitToApp,
+                                    "Exit",
+                                    modifier = Modifier.padding(4.dp),
+                                )
+                                Text(
+                                    modifier = Modifier.padding(4.dp),
+                                    text = "Выход",
+                                    fontSize = 18.sp
+                                )
+                            }
+                        }
                     }
                 }
             },
@@ -103,17 +144,15 @@ fun MapScreen(
                             modifier = Modifier.fillMaxWidth(),
                             title = {
                                 Row {
-                                    IconButton(onClick = { scope.launch { drawerState.open() } },
-                                        content = { Icon(Icons.Filled.Menu, "Меню") }
-                                    )
-                                    Button(
-                                        onClick = {
-                                            getWeather()
+                                    IconButton(
+                                        onClick = { scope.launch { drawerState.open() } },
+                                        content = {
+                                            Icon(
+                                                Icons.Filled.Menu,
+                                                "Menu"
+                                            )
                                         }
-                                    ) {
-                                        Text("обновить погоду")
-                                    }
-
+                                    )
                                 }
                             },
 
@@ -369,9 +408,18 @@ fun MapScreen(
                         ) {
                             Text("OK")
                         }
+                        if (screenState.coordinatesCenterSector != null) {
+                            Button(
+                                onClick = {
+                                    onNavigateToSpecialRequest(screenState.coordinatesCenterSector) }
+                            ) {
+                                Text("запросить спецтранспорт")
+                            }
+                        }
                     }
                 }
             }
         }
     }
 }
+
