@@ -1,6 +1,5 @@
 package com.example.roadinspector.data.repository
 
-import com.example.roadinspector.data.remote.request.LoginRequest
 import com.example.roadinspector.data.remote.request.TransportRequest
 import com.example.roadinspector.domain.model.ResultRequestTransport
 import com.example.roadinspector.domain.repository.RequestTransportRepository

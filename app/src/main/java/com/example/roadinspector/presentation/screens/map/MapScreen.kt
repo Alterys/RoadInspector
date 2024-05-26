@@ -1,7 +1,6 @@
 package com.example.roadinspector.presentation.screens.map
 
 import  android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,15 +12,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Divider
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -36,11 +30,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -94,7 +85,7 @@ fun MapScreen(
                             modifier = Modifier,
                             fontSize = 24.sp,
                             textAlign = TextAlign.Center,
-                            text = "Метеомониторинг дорожного покрытия"
+                            text = stringResource(R.string.title_app)
                         )
                         Text(
                             modifier = Modifier.padding(8.dp),
@@ -115,6 +106,7 @@ fun MapScreen(
                                     drawerState.close()
                                     drawerState.isClosed
                                 }
+                                navController.popBackStack()
                                 navController.navigate(Screen.Login.rout)
                             },
                         ) {
@@ -126,11 +118,13 @@ fun MapScreen(
                                     Icons.AutoMirrored.Filled.ExitToApp,
                                     "Exit",
                                     modifier = Modifier.padding(4.dp),
+                                    tint = Color.DarkGray
                                 )
                                 Text(
                                     modifier = Modifier.padding(4.dp),
-                                    text = "Выход",
-                                    fontSize = 18.sp
+                                    text = stringResource(R.string.exit),
+                                    fontSize = 18.sp,
+                                    color = Color.DarkGray
                                 )
                             }
                         }
@@ -300,7 +294,7 @@ fun MapScreen(
                                 horizontalArrangement = Arrangement.Center
                             ) {
                                 Text(
-                                    text = "Участок #${it + 1}",
+                                    text = stringResource(R.string.plot) + " #${it + 1}",
                                     textAlign = TextAlign.Center
                                 )
                             }
@@ -404,16 +398,19 @@ fun MapScreen(
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Button(
+                            modifier = Modifier.padding(4.dp),
                             onClick = { closedDialog() }
                         ) {
                             Text("OK")
                         }
                         if (screenState.coordinatesCenterSector != null) {
                             Button(
+                                modifier = Modifier.padding(4.dp),
                                 onClick = {
-                                    onNavigateToSpecialRequest(screenState.coordinatesCenterSector) }
+                                    onNavigateToSpecialRequest(screenState.coordinatesCenterSector)
+                                }
                             ) {
-                                Text("запросить спецтранспорт")
+                                Text(text = stringResource(id = R.string.request_transport))
                             }
                         }
                     }

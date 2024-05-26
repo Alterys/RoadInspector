@@ -4,7 +4,10 @@
     <string name="password">Введите свой пароль</string>
     <string name="user">Введите ваш логин</string>
     <string name="app_name">Состояние Дорог</string>
-    <string name="button">Войти</string>
+    <string name="button_login">Войти</string>
+    <string name="button_request_transport">Сделать запрос</string>
+    <string name="request_transport">Запросить спецтранспорт</string>
+    <string name="title_app">Метеомониторинг дорожного покрытия</string>
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="indefinitely">Неопределенно</string>
@@ -22,4 +25,5 @@
     <string name="version_app">Версия 1.0</string>
     <string name="setting">Настройки</string>
     <string name="exit">Выход</string>
+    <string name="plot">Участок</string>
 </resources>

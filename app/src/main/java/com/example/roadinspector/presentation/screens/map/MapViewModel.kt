@@ -118,6 +118,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
                             )
                     }
                 }
+
                 is Resource.Error -> {
                     _screenState.update {
                         it.copy(
@@ -125,6 +126,7 @@ class MapViewModel(application: Application) : AndroidViewModel(application) {
                         )
                     }
                 }
+
                 is Resource.Loading -> {
                     _screenState.update {
                         it.copy(

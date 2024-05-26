@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roadinspector.common.Resource
 import com.example.roadinspector.domain.usecase.LoginUseCase
-import com.example.roadinspector.presentation.screens.login.LoginState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
@@ -46,5 +45,14 @@ class LoginViewModel : ViewModel() {
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun exit() {
+        _screenState.update { state ->
+            state.copy(
+                isLoggedIn = false,
+                message = null
+            )
+        }
     }
 }

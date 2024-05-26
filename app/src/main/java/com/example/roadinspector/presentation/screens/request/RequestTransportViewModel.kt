@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 
-class RequestTransportViewModel : ViewModel()  {
+class RequestTransportViewModel : ViewModel() {
 
     private val _screenState = MutableStateFlow(RequestTransportState())
     val screenState: StateFlow<RequestTransportState> = _screenState
@@ -47,5 +47,13 @@ class RequestTransportViewModel : ViewModel()  {
                 }
             }
         }.launchIn(viewModelScope)
+    }
+
+    fun exit() {
+        _screenState.update {
+            it.copy(
+                message = null
+            )
+        }
     }
 }

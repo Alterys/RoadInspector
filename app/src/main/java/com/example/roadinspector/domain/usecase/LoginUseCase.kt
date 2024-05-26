@@ -1,7 +1,6 @@
 package com.example.roadinspector.domain.usecase
 
 import com.example.roadinspector.common.Resource
-import com.example.roadinspector.data.remote.response.login.LoginResponse
 import com.example.roadinspector.data.repository.AuthRepositoryImpl
 import com.example.roadinspector.domain.model.Login
 import com.example.roadinspector.domain.repository.LoginRepository

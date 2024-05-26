@@ -17,7 +17,7 @@ import com.example.roadinspector.presentation.screens.map.MapScreen
 import com.example.roadinspector.presentation.screens.map.MapViewModel
 import com.example.roadinspector.presentation.screens.request.RequestTransportScreen
 import com.example.roadinspector.presentation.screens.request.RequestTransportViewModel
-import com.example.universitywork.presentation.ui.theme.RoadInspectorTheme
+import com.example.roadinspector.presentation.ui.theme.RoadInspectorTheme
 import com.yandex.mapkit.MapKitFactory
 
 class MainActivity : ComponentActivity() {
@@ -38,7 +38,8 @@ class MainActivity : ComponentActivity() {
                         LoginScreen(
                             navController = navController,
                             login = loginViewModel::login,
-                            screenState = loginViewModel.screenState.collectAsState().value
+                            screenState = loginViewModel.screenState.collectAsState().value,
+                            exit = loginViewModel::exit
                         )
                     }
                     composable(Screen.Map.rout) {
@@ -59,14 +60,15 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = "request_transport/{coordinates}",
                         arguments = listOf(navArgument("coordinates") { type = NavType.StringType })
-                        ) {
+                    ) {
                         val requestTransportViewModel: RequestTransportViewModel by viewModels()
                         val coordinates = it.arguments?.getString("coordinates") ?: ""
                         RequestTransportScreen(
                             coordinates = coordinates,
                             navController = navController,
-                            screenState =  requestTransportViewModel.screenState.collectAsState().value,
-                            requestTransport = requestTransportViewModel::requestTransport
+                            screenState = requestTransportViewModel.screenState.collectAsState().value,
+                            requestTransport = requestTransportViewModel::requestTransport,
+                            exit = requestTransportViewModel::exit
                         )
                     }
                 }
