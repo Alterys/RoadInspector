@@ -1,29 +1,30 @@
-package com.example.roadinspector.presentation.screens.login
+package com.example.roadinspector.presentation.screens.request
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.roadinspector.common.Resource
-import com.example.roadinspector.domain.usecase.LoginUseCase
-import com.example.roadinspector.presentation.screens.login.LoginState
+import com.example.roadinspector.domain.usecase.RequestTransportUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 
-class LoginViewModel : ViewModel() {
+class RequestTransportViewModel : ViewModel()  {
 
-    private val _screenState = MutableStateFlow(LoginState())
-    val screenState: StateFlow<LoginState> = _screenState
+    private val _screenState = MutableStateFlow(RequestTransportState())
+    val screenState: StateFlow<RequestTransportState> = _screenState
 
-    fun login(email: String, password: String) {
-        LoginUseCase()(email, password).onEach { result ->
+    fun requestTransport(email: String, comment: String, coordinate: String) {
+        val parts = coordinate.split(",")
+        val latitude = parts[0].toDouble()
+        val longitude = parts[1].toDouble()
+        RequestTransportUseCase()(email, comment, latitude, longitude).onEach { result ->
             when (result) {
                 is Resource.Success -> {
                     _screenState.update { state ->
                         state.copy(
                             message = result.data.message,
-                            isLoggedIn = result.data.isLoggedIn,
                             isLoading = false
                         )
                     }

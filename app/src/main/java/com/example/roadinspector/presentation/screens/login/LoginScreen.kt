@@ -1,6 +1,7 @@
 package com.example.roadinspector.presentation.screens.login
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,21 +35,16 @@ import com.example.roadinspector.presentation.Screen
 import com.example.roadinspector.presentation.screens.login.components.InputPasswordField
 import com.example.roadinspector.presentation.screens.login.components.InputUserField
 import com.example.roadinspector.presentation.screens.login.components.LoginTextField
+import com.example.roadinspector.presentation.screens.map.MapState
 import com.example.roadinspector.presentation.ui.theme.Pink40
 import com.example.roadinspector.presentation.ui.theme.Purple40
 
 @Composable
 fun LoginScreen(
     navController: NavHostController,
-    login: (String, String) -> Unit
+    login: (String, String) -> Unit,
+    screenState: LoginState,
 ) {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(Color.White)
-            .padding(28.dp)
-    ) {
-
         var password by remember {
             mutableStateOf("")
         }
@@ -56,27 +52,46 @@ fun LoginScreen(
         var user by remember {
             mutableStateOf("")
         }
-        Column(modifier = Modifier.fillMaxSize()) {
-            Spacer(modifier = Modifier.heightIn(60.dp))
+        val isEmailValid = user.contains('@')
+        val isPasswordNotEmpty = password.isNotEmpty()
+        var showError by remember { mutableStateOf(false) }
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Spacer(modifier = Modifier.padding(48.dp))
             LoginTextField(value = stringResource(id = R.string.login))
             InputUserField(
                 value = user,
-                onValueChange = {user = it},
+                onValueChange = { user = it },
                 labelValue = stringResource(id = R.string.user),
-                painterResource = R.drawable.user)
-            Spacer(modifier = Modifier.heightIn(10.dp))
+                painterResource = R.drawable.user,
+                readOnly = screenState.isLoading
+            )
             InputPasswordField(
                 value = password,
-                onValueChange = {password = it},
+                onValueChange = { password = it },
                 labelValue = stringResource(id = R.string.password),
-                painterResource = painterResource(id = R.drawable.password)
+                painterResource = painterResource(id = R.drawable.password),
+                readOnly = screenState.isLoading
             )
-            Spacer(modifier = Modifier.heightIn((30.dp)))
             Button(
-                onClick = { navController.navigate(Screen.Map.rout)},
+                onClick = {
+                    showError = true
+                    if (isPasswordNotEmpty && isEmailValid) {
+                        login(user, password)
+                        if (screenState.isLoggedIn) {
+                            navController.popBackStack()
+                            navController.navigate(Screen.Map.rout)
+                        }
+                    }
+                },
+
                 modifier = Modifier
                     .fillMaxWidth()
-                    .heightIn(48.dp),
+                    .heightIn(48.dp)
+                    .padding(16.dp),
                 contentPadding = PaddingValues(),
                 colors = ButtonDefaults.buttonColors(Color.Magenta)
             ) {
@@ -97,10 +112,35 @@ fun LoginScreen(
                     )
                 }
             }
+            if (showError && !isPasswordNotEmpty && !isEmailValid) {
+                Text(
+                    modifier = Modifier.padding(5.dp),
+                    text = "Введите корректные почту и пароль!",
+                    color = Color.Red
+                )
+            } else if (showError && !isEmailValid) {
+                Text(
+                    modifier = Modifier.padding(5.dp),
+                    text = "Почта не корректная ",
+                    color = Color.Red
+                )
+            } else if (showError && !isPasswordNotEmpty) {
+                Text(
+                    modifier = Modifier.padding(5.dp),
+                    text = "пароль не корректный",
+                    color = Color.Red
+                )
+            }
 
+            screenState.message?.let {
 
+                Text(
+                    modifier = Modifier.padding(5.dp),
+                    text = it,
+                    color = Color.Red
+                )
+            }
         }
-    }
 }
 
 

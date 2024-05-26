@@ -2,6 +2,7 @@ package com.example.roadinspector.presentation.screens.login.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -19,7 +20,7 @@ fun LoginTextField(value: String) {
         text = value,
         modifier = Modifier
             .fillMaxWidth()
-            .heightIn(min = 80.dp),
+            .padding(48.dp),
         style = TextStyle(
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,

@@ -12,5 +12,4 @@ interface WeatherApi {
         @Query("days") days: Int,
         @Query("lang") lang: String
     ): Weather
-
 }

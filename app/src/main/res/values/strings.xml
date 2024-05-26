@@ -18,4 +18,7 @@
     <string name="wind_speed">Wind speed: </string>
     <string name="precipitation">Total precipitation: </string>
     <string name="snowfall_in_cm">Snowfall in cm: </string>
+    <string name="version_app">Version 1.0</string>
+    <string name="setting">Setting</string>
+    <string name="exit">Exit</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.roadinspector.presentation.screens.map.model
+package com.example.roadinspector.domain.model
 
 import com.example.roadinspector.data.remote.response.weather.Current
 import com.example.roadinspector.data.remote.response.weather.ForecastDay
