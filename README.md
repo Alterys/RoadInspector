@@ -9,8 +9,8 @@
 ![Screenshot](https://media.discordapp.net/attachments/694139582228332604/1244372317145010197/screen4.jpg?ex=6654df87&is=66538e07&hm=29b93e9cbcdb276d4f901afd926376d780eec5d818c3f1b28ef68c6af6e28a32&=&format=webp&width=214&height=463)
 
 
-![Screenshot](https://media.discordapp.net/attachments/694139582228332604/1244372317145010197/screen3.jpg?ex=6654df87&is=66538e07&hm=29b93e9cbcdb276d4f901afd926376d780eec5d818c3f1b28ef68c6af6e28a32&=&format=webp&width=214&height=463)
+![Screenshot](https://media.discordapp.net/attachments/694139582228332604/1244372318138929162/screen3.jpg?ex=6654df87&is=66538e07&hm=0a3f7eb448ec46bde38748f9a135bdae0306ea073336c0e2e4d4308200fe5bd3&=&format=webp&width=214&height=463)
 
 
-![Screenshot](https://media.discordapp.net/attachments/694139582228332604/1244372317145010197/screen2.jpg?ex=6654df87&is=66538e07&hm=29b93e9cbcdb276d4f901afd926376d780eec5d818c3f1b28ef68c6af6e28a32&=&format=webp&width=214&height=463)
+![Screenshot](https://media.discordapp.net/attachments/694139582228332604/1244372317891727370/screen2.jpg?ex=6654df87&is=66538e07&hm=11d8473e1e0d53f16b0f901f89c2394891ffe6a4351cf8847b3a7e8155606070&=&format=webp&width=214&height=463)
 
