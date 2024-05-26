@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.roadinspector.presentation.ui.theme.Purple40
+import com.example.roadinspector.presentation.ui.theme.Blue
 
 @Composable
 fun LoginTextField(value: String) {
@@ -24,7 +24,7 @@ fun LoginTextField(value: String) {
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             fontStyle = FontStyle.Normal,
-            color = Purple40
+            color = Blue
         ),
         textAlign = TextAlign.Center
     )

@@ -34,6 +34,8 @@ import com.example.roadinspector.presentation.Screen
 import com.example.roadinspector.presentation.screens.login.components.InputPasswordField
 import com.example.roadinspector.presentation.screens.login.components.InputUserField
 import com.example.roadinspector.presentation.screens.login.components.LoginTextField
+import com.example.roadinspector.presentation.ui.theme.Blue
+import com.example.roadinspector.presentation.ui.theme.ExtraBlue
 import com.example.roadinspector.presentation.ui.theme.Pink40
 import com.example.roadinspector.presentation.ui.theme.Purple40
 
@@ -101,7 +103,7 @@ fun LoginScreen(
                     .fillMaxWidth()
                     .heightIn(48.dp)
                     .background(
-                        brush = Brush.horizontalGradient(listOf(Purple40, Pink40)),
+                        brush = Brush.horizontalGradient(listOf(Blue, ExtraBlue)),
                         shape = RoundedCornerShape(50.dp)
                     ),
                 contentAlignment = Alignment.Center

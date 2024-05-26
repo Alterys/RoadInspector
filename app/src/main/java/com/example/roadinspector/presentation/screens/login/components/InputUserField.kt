@@ -5,11 +5,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.roadinspector.presentation.ui.theme.Blue
 import com.example.universitywork.R
 
 
@@ -25,6 +27,10 @@ fun InputUserField(readOnly: Boolean, value: String, onValueChange: (String) -> 
         leadingIcon = {
             Icon(painter = painterResource(id = R.drawable.user), contentDescription = "")
         },
-        singleLine = true
+        singleLine = true,
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedBorderColor = Blue,
+            focusedLabelColor = Blue
+        )
     )
 }

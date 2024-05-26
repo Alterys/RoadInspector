@@ -10,9 +10,15 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -30,8 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.roadinspector.presentation.Screen
-import com.example.roadinspector.presentation.ui.theme.Pink40
-import com.example.roadinspector.presentation.ui.theme.Purple40
+import com.example.roadinspector.presentation.ui.theme.Blue
+import com.example.roadinspector.presentation.ui.theme.ExtraBlue
 import com.example.universitywork.R
 
 @Composable
@@ -57,13 +63,24 @@ fun RequestTransportScreen(
             .fillMaxSize()
             .padding(12.dp)
     ) {
+
+        IconButton(
+            onClick = {navController.navigate(Screen.Map.rout)}
+        ) {
+            Icon(Icons.AutoMirrored.Outlined.ArrowBack, "Back")
+        }
+
         Text("Email")
         OutlinedTextField(
             modifier = Modifier.fillMaxWidth(),
             value = email,
             keyboardOptions = KeyboardOptions.Default,
             onValueChange = { email = it },
-            singleLine = true
+            singleLine = true,
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Blue,
+                focusedLabelColor = Blue
+            )
         )
         Text("Comment")
         OutlinedTextField(
@@ -72,6 +89,10 @@ fun RequestTransportScreen(
             label = {},
             keyboardOptions = KeyboardOptions.Default,
             onValueChange = { comment = it },
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = Blue,
+                focusedLabelColor = Blue
+            )
         )
         if (screenState.message == "Success") {
             navController.navigate(Screen.Map.rout)
@@ -101,7 +122,7 @@ fun RequestTransportScreen(
                     .fillMaxWidth()
                     .heightIn(48.dp)
                     .background(
-                        brush = Brush.horizontalGradient(listOf(Purple40, Pink40)),
+                        brush = Brush.horizontalGradient(listOf(Blue, ExtraBlue)),
                         shape = RoundedCornerShape(50.dp)
                     ),
                 contentAlignment = Alignment.Center

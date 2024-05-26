@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ExitToApp
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DrawerValue
@@ -45,6 +46,8 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.NavHostController
 import com.example.universitywork.R
 import com.example.roadinspector.presentation.Screen
+import com.example.roadinspector.presentation.ui.theme.Blue
+import com.example.roadinspector.presentation.ui.theme.ExtraBlue
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
 import com.yandex.mapkit.geometry.Polyline
@@ -238,7 +241,9 @@ fun MapScreen(
             horizontalArrangement = Arrangement.Center
         ) {
             Box {
-                CircularProgressIndicator()
+                CircularProgressIndicator(
+                    color = Blue
+                )
             }
         }
     }
@@ -399,7 +404,13 @@ fun MapScreen(
                     ) {
                         Button(
                             modifier = Modifier.padding(4.dp),
-                            onClick = { closedDialog() }
+                            onClick = { closedDialog() },
+                            colors = ButtonColors(
+                                containerColor = Blue,
+                                contentColor = Color.White,
+                                disabledContainerColor = ExtraBlue,
+                                disabledContentColor = Color.DarkGray
+                            )
                         ) {
                             Text("OK")
                         }
@@ -407,8 +418,15 @@ fun MapScreen(
                             Button(
                                 modifier = Modifier.padding(4.dp),
                                 onClick = {
+                                    navController.popBackStack()
                                     onNavigateToSpecialRequest(screenState.coordinatesCenterSector)
-                                }
+                                },
+                                colors = ButtonColors(
+                                    containerColor = Blue,
+                                    contentColor = Color.White,
+                                    disabledContainerColor = ExtraBlue,
+                                    disabledContentColor = Color.DarkGray
+                                )
                             ) {
                                 Text(text = stringResource(id = R.string.request_transport))
                             }
